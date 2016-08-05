@@ -3,13 +3,14 @@
 
 class pm_base {
 
-service { "ntpd":
-  ensure => running,
-  enable => true,
+user  { 'pce':
+  ensure      => present,
+  home        => '/home/pce',
+  uid         => '1000000000000',
+  gid         => 'testgrp',
+  managehome  => true,
 }
-file { "/root/ntp.conf_you-can-delete":
-  owner => 'root',
-  group => 'root',
-  mode  => '0664',
+group { 'testgrp':
+ensure        => present,
 }
 }
